@@ -1,11 +1,12 @@
 const theme = {
   /* SCSS HEX */
   colours: {
-    safetyOrangeBlazeOrange: '#ff6700ff',
-    cultured: '#ebebebff',
-    silverSand: '#c0c0c0ff',
+    brand1: '#ff6700ff',
+    brand2: '#004e98ff',
+    white1: '#ebebebff',
+    black1: '#333333ff',
+    gray1: '#c0c0c0ff',
     queenBlue: '#3a6ea5ff',
-    usafaBlue: '#004e98ff',
   },
 
   /* SCSS Gradient */
