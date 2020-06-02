@@ -5,6 +5,7 @@ const theme = {
     brand2: '#004e98ff',
     white1: '#ebebebff',
     black1: '#333333ff',
+    black2: '#334141ff',
     gray1: '#c0c0c0ff',
     queenBlue: '#3a6ea5ff',
   },

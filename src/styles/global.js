@@ -29,7 +29,7 @@ const Global = createGlobalStyle`
       }
     }
     .react-icons {
-      vertical-align: middle;
+      vertical-align: baseline;
     }
     ${'' /* .hidden-xs {
       display: none

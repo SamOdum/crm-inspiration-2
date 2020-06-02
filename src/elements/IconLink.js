@@ -5,26 +5,30 @@ import DimensionContext from '../contexts/DimensionContext';
 
 const Anchor = styled.a`
   font-family: ${(props) => props.theme.fonts.base};
+  font-size: inherit;
   font-weight: 400;
   margin-right: 12px;
   text-decoration: none;
-  line-height: 2;
-  color: ${(props) => props.theme.colours.usafaBlue};
+  line-height: 1;
+  color: ${(props) => props.theme.colours.black1};
+  transition: 0.5s all ease;
   ${(props) =>
     props.dimensions < 576 &&
     css`
       font-size: 140%;
     `}
+  &:visited {
+    color: ${(props) => props.theme.colours.black1};
+  }
+  &:hover {
+    color: ${(props) => props.theme.colours.brand1};
+  }
 `;
 
 const PreIcon = styled.span`
-  /* text-align: right; */
   display: inline-block;
-  font: normal normal normal 14px/1 FontAwesome;
-  font-size: inherit;
+  font-size: 10px;
   text-rendering: auto;
-  /* padding-right: 5px; */
-  /* margin-right: 5px; */
   -webkit-font-smoothing: antialiased;
 `;
 
@@ -32,25 +36,19 @@ const PostIcon = styled.span`
   -webkit-font-smoothing: antialiased;
   font-weight: 400;
   font-size: 90%;
-  /* text-align: right; */
   padding: 0.1em 0.4em;
   vertical-align: baseline;
-  /* line-height: 2; */
-  background-color: #fed700;
-  color: #fff;
+  background-color: ${(props) => props.theme.colours.black2};
+  color: ${(props) => props.theme.colours.white1};
   text-align: center;
-  /* color: red; */
   margin-left: ${(props) =>
-    props.dimensions < 576 && props.linkData.PreIcon ? '6px' : '0'};
-  /* font-size: inherit; */
+    props.dimensions < 576 && props.linkData.preIcon ? '6px' : '0'};
 `;
 
 const Text = styled.span`
   font-weight: 400;
-  /* text-align: right; */
-  /* margin-right: 6px; */
-  padding-right: ${(props) => (props.linkData.PostIcon ? '6px' : 0)};
-  padding-left: ${(props) => (props.linkData.PreIcon ? '6px' : 0)};
+  padding-right: ${(props) => (props.linkData.postIcon ? '6px' : 0)};
+  padding-left: ${(props) => (props.linkData.preIcon ? '6px' : 0)};
   display: ${(props) => (props.dimensions < 576 ? 'none' : 'inline-block')};
 `;
 
@@ -58,22 +56,22 @@ const Text = styled.span`
  * Renders an <IconLink /> component
  * @param  {object} linkData
  * @param  {string} [linkData.linkTo] - Path the button points to
- * @param  {element} [linkData.PreIcon] - Icon component prepended to button
+ * @param  {element} [linkData.preIcon] - Icon component prepended to button
  * @param  {string} linkData.linkText - Text displayed on the button
- * @param  {number} [linkData.PostIcon] - Number appended to button
+ * @param  {number} [linkData.postIcon] - Number appended to button
  */
 const IconLink = ({ linkData }) => {
   const [dimensions] = useContext(DimensionContext);
 
   return (
     <Anchor href={linkData.linkTo} dimensions={dimensions.width}>
-      {linkData.PreIcon && <PreIcon>{linkData.PreIcon}</PreIcon>}
+      {linkData.preIcon && <PreIcon>{linkData.preIcon}</PreIcon>}
       <Text dimensions={dimensions.width} linkData={linkData}>
         {linkData.linkText}
       </Text>
-      {linkData.PostIcon && (
+      {linkData.postIcon && (
         <PostIcon dimensions={dimensions.width} linkData={linkData}>
-          {linkData.PostIcon}
+          {linkData.postIcon}
         </PostIcon>
       )}
     </Anchor>
@@ -83,9 +81,9 @@ const IconLink = ({ linkData }) => {
 IconLink.propTypes = {
   linkData: PropTypes.shape({
     linkTo: PropTypes.string,
-    PreIcon: PropTypes.element,
+    preIcon: PropTypes.element,
     linkText: PropTypes.string,
-    PostIcon: PropTypes.element,
+    postIcon: PropTypes.element,
   }).isRequired,
 };
 
