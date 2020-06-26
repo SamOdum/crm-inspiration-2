@@ -75,42 +75,42 @@ const HeaderUtilGroup = styled.div`
 const linkData1 = {
   linkTo: './my-account',
   preIcon: <FaUser />,
-  postIcon: '',
+  postIcon: null,
   linkText: 'My Account',
 };
 const linkData2 = {
   linkTo: './wishlist',
   preIcon: <FaHeart />,
-  postIcon: '',
+  postIcon: null,
   linkText: 'Wishlist',
 };
 const linkData3 = {
   linkTo: './blog',
   preIcon: <FaRss />,
-  postIcon: '',
+  postIcon: null,
   linkText: 'Blog',
 };
 const linkData4 = {
   linkTo: './login',
   preIcon: <FaUnlockAlt />,
-  postIcon: '',
+  postIcon: null,
   linkText: 'Login',
 };
 // const linkData5 = {
 //   linkTo: './leanguage',
-//   preIcon: '',
+//   preIcon: null,
 //   postIcon: <FaAngleDown />,
 //   linkText: 'English',
 // };
 const linkData6 = {
   linkTo: './currency',
-  preIcon: '',
+  preIcon: null,
   postIcon: <FaAngleDown />,
   linkText: 'NGN',
 };
 const linkData7 = {
   linkTo: './register',
-  preIcon: '',
+  preIcon: null,
   postIcon: <FaAngleDown />,
   linkText: 'Register',
 };
