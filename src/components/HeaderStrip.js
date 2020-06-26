@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import {
   FaUser,
@@ -117,6 +117,13 @@ const linkData7 = {
 
 const HeaderStrip = () => {
   const [dimensions] = useContext(DimensionContext);
+  const [headerDropDown, setHeaderDropDown] = useState({ register: true });
+  const openDropDown = (e) => {
+    setHeaderDropDown({ [e.currentTarget.dataset.id]: true });
+  };
+  const closeDropDown = (e) => {
+    setHeaderDropDown({ [e.currentTarget.dataset.id]: false });
+  };
 
   return (
     <Strip>
@@ -135,7 +142,35 @@ const HeaderStrip = () => {
             <Divider />
             <HeaderUtilGroup>
               <IconLink linkData={linkData6} />
-              <IconLink linkData={linkData7} />
+              <IconLink
+                linkData={linkData7}
+                onMouseEnter={() => openDropDown('register')}
+                onMouseLeave={() => closeDropDown('register')}
+              />
+              <ul
+                style={
+                  headerDropDown.register
+                    ? { display: 'block' }
+                    : { display: 'none' }
+                }
+              >
+                <li>
+                  <a href="user-signup">
+                    <span>
+                      <i className="fa fa-user" />
+                    </span>
+                    {' As User'}
+                  </a>
+                </li>
+                <li>
+                  <a href="vendor-signup">
+                    <span>
+                      <i className="fa fa-male" />
+                    </span>
+                    {' As Vendor'}
+                  </a>
+                </li>
+              </ul>
             </HeaderUtilGroup>
           </HeaderLinks>
         </Wrapper>
