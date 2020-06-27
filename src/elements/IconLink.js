@@ -9,7 +9,9 @@ const Anchor = styled.a`
   font-weight: 400;
   margin-right: 12px;
   text-decoration: none;
-  line-height: 1;
+  display: inline-block;
+  /* line-height: 1; */
+  position: relative;
   color: ${(props) => props.theme.colours.black1};
   transition: 0.5s all ease;
   ${(props) =>
@@ -29,11 +31,9 @@ const PreIcon = styled.span`
   display: inline-block;
   font-size: 10px;
   text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
 `;
 
 const PostIcon = styled.span`
-  -webkit-font-smoothing: antialiased;
   font-weight: 400;
   font-size: 90%;
   padding: 0.1em 0.4em;
@@ -55,16 +55,23 @@ const Text = styled.span`
 /**
  * Renders an <IconLink /> component
  * @param  {object} linkData
+ * @param  {string} [linkData.id] - Id of the button
  * @param  {string} [linkData.linkTo] - Path the button points to
  * @param  {element} [linkData.preIcon] - Icon component prepended to button
  * @param  {string} linkData.linkText - Text displayed on the button
  * @param  {number} [linkData.postIcon] - Number appended to button
  */
-const IconLink = ({ linkData }) => {
+const IconLink = ({ linkData, onMouseEnter, onMouseLeave }) => {
   const [dimensions] = useContext(DimensionContext);
 
   return (
-    <Anchor href={linkData.linkTo} dimensions={dimensions.width}>
+    <Anchor
+      id={linkData.id}
+      href={linkData.linkTo}
+      dimensions={dimensions.width}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
       {linkData.preIcon && <PreIcon>{linkData.preIcon}</PreIcon>}
       <Text dimensions={dimensions.width} linkData={linkData}>
         {linkData.linkText}
@@ -78,13 +85,21 @@ const IconLink = ({ linkData }) => {
   );
 };
 
+IconLink.defaultProps = {
+  onMouseEnter: () => {},
+  onMouseLeave: () => {},
+};
+
 IconLink.propTypes = {
   linkData: PropTypes.shape({
+    id: PropTypes.string,
     linkTo: PropTypes.string,
     preIcon: PropTypes.element,
     linkText: PropTypes.string,
     postIcon: PropTypes.element,
   }).isRequired,
+  onMouseEnter: PropTypes.func,
+  onMouseLeave: PropTypes.func,
 };
 
 export default IconLink;
