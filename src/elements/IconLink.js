@@ -36,11 +36,13 @@ const PreIcon = styled.span`
 const PostIcon = styled.span`
   font-weight: 400;
   font-size: 90%;
-  padding: 0.1em 0.4em;
-  vertical-align: baseline;
+  /* padding: 0.1em 0.4em;
+  vertical-align: baseline; */
   background-color: ${(props) => props.theme.colours.black2};
   color: ${(props) => props.theme.colours.white1};
-  text-align: center;
+  /* text-align: center; */
+  display: inline-flex;
+  padding: 0.4em;
   margin-left: ${(props) =>
     props.dimensions < 576 && props.linkData.preIcon ? '6px' : '0'};
 `;

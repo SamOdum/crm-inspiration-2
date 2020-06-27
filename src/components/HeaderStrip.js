@@ -17,7 +17,7 @@ import DimensionContext from '../contexts/DimensionContext';
 const Strip = styled.section`
   background-color: ${(props) => props.theme.colours.white1};
 
-  line-height: 30px;
+  /* line-height: 30px; */
   width: 100%;
   border-bottom: 1px solid ${(props) => props.theme.colours.black1};
 `;
@@ -52,6 +52,7 @@ const Welcome = styled.div`
 const HeaderLinks = styled.div`
   padding: 0 0.2em;
   display: flex;
+  align-items: center;
   color: ${(props) => props.theme.colours.black1};
 `;
 
@@ -96,10 +97,16 @@ const DropDownA = styled.a`
   position: relative;
   white-space: nowrap;
   line-height: 30px;
-  color: #666;
+  color: ${(props) => props.theme.colours.black1};
   padding-left: 12px;
   display: block;
   text-transform: capitalize;
+  &:visited {
+    color: ${(props) => props.theme.colours.black1};
+  }
+  &:hover {
+    color: ${(props) => props.theme.colours.brand1};
+  }
 `;
 
 const linkData1 = {
@@ -146,9 +153,9 @@ const linkData6 = {
 };
 const linkData7 = {
   id: 'register',
-  linkTo: './register',
+  linkTo: null,
   preIcon: null,
-  postIcon: <FaAngleDown />,
+  postIcon: <FaUser />,
   linkText: 'Register',
 };
 
@@ -226,7 +233,7 @@ const HeaderStrip = () => {
     postion: 'absolute',
     opacity: headerDropDown[linkData7.id] ? 1 : 0,
     visibility: headerDropDown[linkData7.id] ? 'visible' : 'hidden',
-    top: headerDropDown[linkData7.id] ? '28px' : '52px',
+    top: headerDropDown[linkData7.id] ? '30px' : '52px',
     // zIndex: headerDropDown[linkData7.id] ? '999' : '-1',
     pointerEvents: headerDropDown[linkData7.id] ? 'inherit' : 'none',
   });
