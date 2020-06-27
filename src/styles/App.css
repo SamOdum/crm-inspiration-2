@@ -1,1 +1,23 @@
 /* @import './responsive.css'; */
+.red {
+  color: red;
+}
+.dropdown {
+  letter-spacing: 0.8px;
+  color: #334141;
+  line-height: normal;
+  cursor: pointer;
+  box-sizing: border-box;
+  position: absolute;
+  right: 6em;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  text-align: left;
+  top: 25px;
+  opacity: 1;
+  visibility: visible;
+  min-width: 114px;
+  margin: auto;
+}
