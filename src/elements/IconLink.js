@@ -62,8 +62,11 @@ const Text = styled.span`
  * @param  {element} [linkData.preIcon] - Icon component prepended to button
  * @param  {string} linkData.linkText - Text displayed on the button
  * @param  {number} [linkData.postIcon] - Number appended to button
+ * @param  {function} [onMouseEnter] - Function to fire on mouse enter
+ * @param  {function} [onMouseLeave] - Function to fire on mouse leave
+ * @param  {object} [style] - instance-specific styles
  */
-const IconLink = ({ linkData, onMouseEnter, onMouseLeave }) => {
+const IconLink = ({ linkData, onMouseEnter, onMouseLeave, style }) => {
   const [dimensions] = useContext(DimensionContext);
 
   return (
@@ -73,6 +76,7 @@ const IconLink = ({ linkData, onMouseEnter, onMouseLeave }) => {
       dimensions={dimensions.width}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      style={style}
     >
       {linkData.preIcon && <PreIcon>{linkData.preIcon}</PreIcon>}
       <Text dimensions={dimensions.width} linkData={linkData}>
@@ -90,6 +94,7 @@ const IconLink = ({ linkData, onMouseEnter, onMouseLeave }) => {
 IconLink.defaultProps = {
   onMouseEnter: () => {},
   onMouseLeave: () => {},
+  style: {},
 };
 
 IconLink.propTypes = {
@@ -102,6 +107,7 @@ IconLink.propTypes = {
   }).isRequired,
   onMouseEnter: PropTypes.func,
   onMouseLeave: PropTypes.func,
+  style: PropTypes.shape({}),
 };
 
 export default IconLink;

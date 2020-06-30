@@ -1,18 +1,20 @@
 import React, { useContext, useState } from 'react';
 import { animated, useSpring } from 'react-spring';
 import styled from 'styled-components';
-import {
-  FaUser,
-  FaMale,
-  FaHeart,
-  FaRss,
-  FaUnlockAlt,
-  FaAngleDown,
-} from 'react-icons/fa';
+import { FaUser, FaMale } from 'react-icons/fa';
 
 import Container from './Container';
 import IconLink from '../elements/IconLink';
 import DimensionContext from '../contexts/DimensionContext';
+import {
+  linkData1,
+  linkData2,
+  linkData3,
+  linkData4,
+  // linkData5,
+  linkData6,
+  linkData7,
+} from '../data/headerStrip';
 
 const Strip = styled.section`
   background-color: ${(props) => props.theme.colours.white1};
@@ -29,7 +31,7 @@ const Wrapper = styled.div`
 `;
 
 const HeaderGreeting = styled.div`
-  padding: 0 0.2em;
+  /* padding: 0 0.2em; */
 `;
 
 const Welcome = styled.div`
@@ -44,13 +46,13 @@ const Welcome = styled.div`
   padding: 0;
   /* position: relative; */
   min-height: 1px;
-  padding-right: 15px;
-  padding-left: 15px;
+  /* padding-right: 15px;
+  padding-left: 15px; */
   display: ${(props) => (props.dimensions < 576 ? 'none' : 'inline-block')};
 `;
 
 const HeaderLinks = styled.div`
-  padding: 0 0.2em;
+  /* padding: 0 0.2em; */
   display: flex;
   align-items: center;
   color: ${(props) => props.theme.colours.black1};
@@ -93,7 +95,7 @@ const DropDownA = styled.a`
   padding: 0;
   background-color: transparent;
   text-decoration: none;
-  transition: 0.5s all ease;
+  /* transition: 0.5s all ease; */
   position: relative;
   white-space: nowrap;
   line-height: 30px;
@@ -108,56 +110,6 @@ const DropDownA = styled.a`
     color: ${(props) => props.theme.colours.brand1};
   }
 `;
-
-const linkData1 = {
-  id: 'my-account',
-  linkTo: './my-account',
-  preIcon: <FaUser />,
-  postIcon: null,
-  linkText: 'My Account',
-};
-const linkData2 = {
-  id: 'wishlist',
-  linkTo: './wishlist',
-  preIcon: <FaHeart />,
-  postIcon: null,
-  linkText: 'Wishlist',
-};
-const linkData3 = {
-  id: 'blog',
-  linkTo: './blog',
-  preIcon: <FaRss />,
-  postIcon: null,
-  linkText: 'Blog',
-};
-const linkData4 = {
-  id: 'login',
-  linkTo: './login',
-  preIcon: <FaUnlockAlt />,
-  postIcon: null,
-  linkText: 'Login',
-};
-// const linkData5 = {
-//   id: 'language',
-//   linkTo: './leanguage',
-//   preIcon: null,
-//   postIcon: <FaAngleDown />,
-//   linkText: 'English',
-// };
-const linkData6 = {
-  id: 'currency',
-  linkTo: './currency',
-  preIcon: null,
-  postIcon: <FaAngleDown />,
-  linkText: 'NGN',
-};
-const linkData7 = {
-  id: 'register',
-  linkTo: null,
-  preIcon: null,
-  postIcon: <FaUser />,
-  linkText: 'Register',
-};
 
 const dropDownMenuClose = {
   letterSpacing: ' 0.8px',
@@ -259,6 +211,7 @@ const HeaderStrip = () => {
                 linkData={linkData7}
                 onMouseEnter={openDropDown}
                 onMouseLeave={closeDropDown}
+                style={{ marginRight: 0 }} // This counsels out the margin-right set on the imported component
               />
               <animated.ul
                 style={dropDownAnimation}
