@@ -1,11 +1,23 @@
 import React, { useContext, useState } from 'react';
-import { animated, useSpring } from 'react-spring';
-import styled from 'styled-components';
-import { FaUser, FaMale } from 'react-icons/fa';
+import { useSpring } from 'react-spring';
+import { FaUser, FaMale, FaMoneyBill } from 'react-icons/fa';
 
 import Container from './Container';
 import IconLink from '../elements/IconLink';
 import DimensionContext from '../contexts/DimensionContext';
+import {
+  AnimatedDropdown,
+  Divider,
+  DropDownAnchor,
+  DropDownListItem,
+  HeaderGreeting,
+  HeaderLinks,
+  HeaderLinkGroup,
+  HeaderUtilGroup,
+  Strip,
+  Welcome,
+  Wrapper,
+} from '../elements/HeaderStripElem';
 import {
   linkData1,
   linkData2,
@@ -16,177 +28,42 @@ import {
   linkData7,
 } from '../data/headerStrip';
 
-const Strip = styled.section`
-  background-color: ${(props) => props.theme.colours.white1};
-
-  /* line-height: 30px; */
-  width: 100%;
-  border-bottom: 1px solid ${(props) => props.theme.colours.black1};
-`;
-
-const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const HeaderGreeting = styled.div`
-  /* padding: 0 0.2em; */
-`;
-
-const Welcome = styled.div`
-  font-size: 13px;
-  font-weight: 400;
-  text-align: left;
-  letter-spacing: 0.8px;
-  line-height: 30px;
-  color: ${(props) => props.theme.colours.black2};
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  /* position: relative; */
-  min-height: 1px;
-  /* padding-right: 15px;
-  padding-left: 15px; */
-  display: ${(props) => (props.dimensions < 576 ? 'none' : 'inline-block')};
-`;
-
-const HeaderLinks = styled.div`
-  /* padding: 0 0.2em; */
-  display: flex;
-  align-items: center;
-  color: ${(props) => props.theme.colours.black1};
-`;
-
-const HeaderLinkGroup = styled.div`
-  height: 80%;
-  font-size: 12px;
-`;
-
-const Divider = styled.span`
-  display: block;
-  height: 15px;
-  width: 1px;
-  align-self: center;
-  background-color: ${(props) => props.theme.colours.brand1};
-`;
-
-const HeaderUtilGroup = styled.div`
-  padding-left: 12px;
-  font-size: 12px;
-  /* border-left: 1px solid red; */
-`;
-
-const DropDownLi = styled.li`
-  line-height: normal;
-  cursor: pointer;
-  visibility: visible;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  background: #fbfbfb;
-`;
-const DropDownA = styled.a`
-  visibility: visible;
-  list-style: none;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  background-color: transparent;
-  text-decoration: none;
-  /* transition: 0.5s all ease; */
-  position: relative;
-  white-space: nowrap;
-  line-height: 30px;
-  color: ${(props) => props.theme.colours.black1};
-  padding-left: 12px;
-  display: block;
-  text-transform: capitalize;
-  &:visited {
-    color: ${(props) => props.theme.colours.black1};
-  }
-  &:hover {
-    color: ${(props) => props.theme.colours.brand1};
-  }
-`;
-
-const dropDownMenuClose = {
-  letterSpacing: ' 0.8px',
-  color: ' #334141',
-  lineHeight: ' normal',
-  boxSizing: ' border-box',
-  position: ' absolute',
-  right: ' 0',
-  top: ' 52px',
-  padding: ' 10px',
-  background: ' #fff',
-  boxShadow: ' 0 2px 5px rgba(0,0,0,0.2)',
-  opacity: ' 0',
-  visibility: ' hidden',
-  zIndex: ' 999',
-  textAlign: ' left',
-  minWidth: ' 114px',
-  margin: ' auto',
-};
-
-const dropDownMenuOpen = {
-  letterSpacing: ' 0.8px',
-  color: ' #334141',
-  lineHeight: ' normal',
-  cursor: ' pointer',
-  boxSizing: ' border-box',
-  position: ' absolute',
-  right: ' 6em',
-  padding: ' 10px',
-  background: ' #fff',
-  boxShadow: ' 0 2px 5px rgba(0,0,0,0.2)',
-  zIndex: ' 999',
-  textAlign: ' left',
-  top: ' 25px',
-  opacity: ' 1',
-  visibility: ' visible',
-  minWidth: ' 114px',
-  margin: ' auto',
-};
-
 const HeaderStrip = () => {
   const [dimensions] = useContext(DimensionContext);
   const [headerDropDown, setHeaderDropDown] = useState({});
 
   const openDropDown = (e) => {
-    console.log(e.currentTarget.id);
     setHeaderDropDown({ [e.currentTarget.id]: true });
-    console.log(headerDropDown);
   };
   const closeDropDown = (e) => {
-    console.log(e.currentTarget.id);
     setHeaderDropDown({ [e.currentTarget.id]: false });
-    console.log(headerDropDown);
   };
   // Keep secondary menu flyout from collapsing
   const keepDropDownOpen = (specific) => {
-    console.log(specific);
     setHeaderDropDown({
       [specific]: true,
     });
-    console.log(headerDropDown);
   };
-  // Keep secondary menu flyout from collapsing
+  // Close secondary menu flyout from staying open
   const closeDropDownOnLeave = (specific) => {
-    console.log(specific);
     setHeaderDropDown({
       [specific]: false,
     });
-    console.log(headerDropDown);
   };
 
-  const dropDownAnimation = useSpring({
+  // React springs animation for dropdown menu
+  const dropDownAnchorCurrency = useSpring({
+    postion: 'absolute',
+    opacity: headerDropDown[linkData6.id] ? 1 : 0,
+    visibility: headerDropDown[linkData6.id] ? 'visible' : 'hidden',
+    top: headerDropDown[linkData6.id] ? '30px' : '52px',
+    pointerEvents: headerDropDown[linkData6.id] ? 'inherit' : 'none',
+  });
+  const dropDownAnchorRegister = useSpring({
     postion: 'absolute',
     opacity: headerDropDown[linkData7.id] ? 1 : 0,
     visibility: headerDropDown[linkData7.id] ? 'visible' : 'hidden',
     top: headerDropDown[linkData7.id] ? '30px' : '52px',
-    // zIndex: headerDropDown[linkData7.id] ? '999' : '-1',
     pointerEvents: headerDropDown[linkData7.id] ? 'inherit' : 'none',
   });
 
@@ -199,43 +76,81 @@ const HeaderStrip = () => {
           </HeaderGreeting>
           <HeaderLinks>
             <HeaderLinkGroup>
-              <IconLink linkData={linkData1} />
-              <IconLink linkData={linkData2} />
-              <IconLink linkData={linkData3} />
-              <IconLink linkData={linkData4} />
+              <IconLink linkData={linkData1} name="My Account" />
+              <IconLink linkData={linkData2} name="Wishlist" />
+              <IconLink linkData={linkData3} name="Blog" />
+              <IconLink linkData={linkData4} name="Login" />
             </HeaderLinkGroup>
             <Divider />
             <HeaderUtilGroup>
-              <IconLink linkData={linkData6} />
               <IconLink
-                linkData={linkData7}
+                linkData={linkData6}
+                name="Currency"
                 onMouseEnter={openDropDown}
                 onMouseLeave={closeDropDown}
-                style={{ marginRight: 0 }} // This counsels out the margin-right set on the imported component
-              />
-              <animated.ul
-                style={dropDownAnimation}
-                className="dropdown"
-                onMouseEnter={() => keepDropDownOpen(linkData7.id)}
-                onMouseLeave={() => closeDropDownOnLeave(linkData7.id)}
+                style={{ position: 'relative' }}
               >
-                <DropDownLi>
-                  <DropDownA href="user-signup">
-                    <span>
-                      <FaUser />
-                    </span>
-                    {' As User'}
-                  </DropDownA>
-                </DropDownLi>
-                <DropDownLi>
-                  <DropDownA href="vendor-signup">
-                    <span>
-                      <FaMale />
-                    </span>
-                    {' As Vendor'}
-                  </DropDownA>
-                </DropDownLi>
-              </animated.ul>
+                <AnimatedDropdown
+                  style={dropDownAnchorCurrency}
+                  onMouseEnter={() => keepDropDownOpen(linkData6.id)}
+                  onMouseLeave={() => closeDropDownOnLeave(linkData6.id)}
+                >
+                  <DropDownListItem>
+                    <DropDownAnchor href="naira">
+                      <span>
+                        <FaMoneyBill />
+                      </span>
+                      {' NGN'}
+                    </DropDownAnchor>
+                  </DropDownListItem>
+                  <DropDownListItem>
+                    <DropDownAnchor href="dollar">
+                      <span>
+                        <FaMoneyBill />
+                      </span>
+                      {' USD'}
+                    </DropDownAnchor>
+                  </DropDownListItem>
+                  <DropDownListItem>
+                    <DropDownAnchor href="Euro">
+                      <span>
+                        <FaMoneyBill />
+                      </span>
+                      {' EURO'}
+                    </DropDownAnchor>
+                  </DropDownListItem>
+                </AnimatedDropdown>
+              </IconLink>
+              <IconLink
+                linkData={linkData7}
+                name="Register"
+                onMouseEnter={openDropDown}
+                onMouseLeave={closeDropDown}
+                style={{ marginRight: 0, position: 'relative' }} // This counsels out the margin-right set on the imported IconLink component
+              >
+                <AnimatedDropdown
+                  style={dropDownAnchorRegister}
+                  onMouseEnter={() => keepDropDownOpen(linkData7.id)}
+                  onMouseLeave={() => closeDropDownOnLeave(linkData7.id)}
+                >
+                  <DropDownListItem>
+                    <DropDownAnchor href="user-signup">
+                      <span>
+                        <FaUser />
+                      </span>
+                      {' As User'}
+                    </DropDownAnchor>
+                  </DropDownListItem>
+                  <DropDownListItem>
+                    <DropDownAnchor href="vendor-signup">
+                      <span>
+                        <FaMale />
+                      </span>
+                      {' As Vendor'}
+                    </DropDownAnchor>
+                  </DropDownListItem>
+                </AnimatedDropdown>
+              </IconLink>
             </HeaderUtilGroup>
           </HeaderLinks>
         </Wrapper>

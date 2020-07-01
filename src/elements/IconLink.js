@@ -36,8 +36,7 @@ const PreIcon = styled.span`
 const PostIcon = styled.span`
   font-weight: 400;
   font-size: 90%;
-  /* padding: 0.1em 0.4em;
-  vertical-align: baseline; */
+  /* vertical-align: baseline; */
   background-color: ${(props) => props.theme.colours.black2};
   color: ${(props) => props.theme.colours.white1};
   /* text-align: center; */
@@ -51,7 +50,7 @@ const Text = styled.span`
   font-weight: 400;
   padding-right: ${(props) => (props.linkData.postIcon ? '6px' : 0)};
   padding-left: ${(props) => (props.linkData.preIcon ? '6px' : 0)};
-  display: ${(props) => (props.dimensions < 576 ? 'none' : 'inline-block')};
+  display: ${(props) => (props.dimensions < 800 ? 'none' : 'inline-block')};
 `;
 
 /**
@@ -62,16 +61,25 @@ const Text = styled.span`
  * @param  {element} [linkData.preIcon] - Icon component prepended to button
  * @param  {string} linkData.linkText - Text displayed on the button
  * @param  {number} [linkData.postIcon] - Number appended to button
+ * @param  {string} name - Name of button for visual identification
  * @param  {function} [onMouseEnter] - Function to fire on mouse enter
  * @param  {function} [onMouseLeave] - Function to fire on mouse leave
  * @param  {object} [style] - instance-specific styles
  */
-const IconLink = ({ linkData, onMouseEnter, onMouseLeave, style }) => {
+const IconLink = ({
+  children,
+  linkData,
+  name,
+  onMouseEnter,
+  onMouseLeave,
+  style,
+}) => {
   const [dimensions] = useContext(DimensionContext);
 
   return (
     <Anchor
       id={linkData.id}
+      name={name}
       href={linkData.linkTo}
       dimensions={dimensions.width}
       onMouseEnter={onMouseEnter}
@@ -87,6 +95,8 @@ const IconLink = ({ linkData, onMouseEnter, onMouseLeave, style }) => {
           {linkData.postIcon}
         </PostIcon>
       )}
+
+      {children}
     </Anchor>
   );
 };
@@ -95,6 +105,7 @@ IconLink.defaultProps = {
   onMouseEnter: () => {},
   onMouseLeave: () => {},
   style: {},
+  children: [],
 };
 
 IconLink.propTypes = {
@@ -105,9 +116,14 @@ IconLink.propTypes = {
     linkText: PropTypes.string,
     postIcon: PropTypes.element,
   }).isRequired,
+  name: PropTypes.string.isRequired,
   onMouseEnter: PropTypes.func,
   onMouseLeave: PropTypes.func,
   style: PropTypes.shape({}),
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
 };
 
 export default IconLink;
