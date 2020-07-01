@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 const Wrapper = styled.div`
   margin: 0 auto;
   width: 90%;
+  padding: 0 15px;
 `;
 
 /**
