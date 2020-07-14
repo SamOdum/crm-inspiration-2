@@ -126,7 +126,11 @@ const HeaderStrip = () => {
                 name="Register"
                 onMouseEnter={openDropDown}
                 onMouseLeave={closeDropDown}
-                style={{ marginRight: 0, position: 'relative' }} // This counsels out the margin-right set on the imported IconLink component
+                style={{
+                  marginRight: 0,
+                  position: 'relative',
+                  cursor: 'pointer',
+                }} // This cancels out the margin-right set on the imported IconLink component
               >
                 <AnimatedDropdown
                   style={dropDownAnchorRegister}
