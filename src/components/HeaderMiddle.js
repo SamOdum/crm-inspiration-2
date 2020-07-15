@@ -7,21 +7,27 @@ import DimensionContext from '../contexts/DimensionContext';
 // import logo from '../assets/logo/front_logo.png';
 import logo from '../assets/logo/logo-1.jpg';
 
+const MidHeader = styled.section`
+  color: ${(props) => props.theme.colours.black2};
+`;
+
 const HeaderMiddleWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  height: 80px;
 `;
 
 const LogoContainer = styled.div`
   color: #333e48;
   font-size: 13px;
   font-weight: 400;
-  line-height: 20px;
-  vertical-align: middle;
-  margin-top: 30px;
+  /* line-height: 20px; */
+  /* vertical-align: middle; */
+  /* margin-top: 30px; */
   text-align: left;
   display: inline-block;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
   flex: 0 0 25%;
 `;
 
@@ -30,18 +36,18 @@ const TopSearch = styled.div`
   display: ${(props) => (props.dimensions < 820 ? 'none' : 'inline-block')};
   font-size: 13px;
   font-weight: 400;
-  line-height: 20px;
+  /* line-height: 20px; */
   text-align: left;
-  margin-top: 13px;
+  /* margin-top: 13px; */
   flex: 1 1 50%;
 `;
 
 const Search = styled.div`
-  padding-top: 13px;
+  /* padding-top: 13px; */
 `;
 
 const SearchForm = styled.div`
-  display: inline;
+  /* display: inline; */
 `;
 
 const SearchInputGroup = styled.div`
@@ -53,33 +59,24 @@ const SearchInputGroup = styled.div`
   overflow: hidden;
   width: 100%;
   background: #fff;
-`;
-
-const SearchInputHidden = styled.input`
-  border-collapse: separate;
-  height: 40px;
-  display: inline-block;
-  width: 90%;
-  border: none;
-  background: #fff;
-  border-left: 1px solid #eaeaea;
-  box-shadow: none;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
 `;
 
 const SearchInputNameFilter = styled.input`
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   border-collapse: separate;
   box-sizing: border-box;
   padding: 6px 12px;
   font-size: 14px;
-  line-height: 1.42857143;
+  /* line-height: 1.42857143; */
   color: #555;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   position: relative;
   z-index: 2;
-  float: left;
+  /* float: left; */
   margin-bottom: 0;
-  border-radius: 0;
+  border-radius: 50px;
   height: 40px;
   /* display: inline-block; */
   width: 90%;
@@ -98,10 +95,13 @@ const SearchSubmitButton = styled.button`
   cursor: pointer;
   font-family: inherit;
   font-size: inherit;
-  line-height: 28px;
-  padding: 6px 20px 6px 18px;
-  float: right;
-  /* display: inline-block; */
+  width: 10%;
+  /* line-height: 28px; */
+  /* padding: 6px 20px 6px 18px; */
+  /* float: right; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: #fafafa;
   border: none;
   color: #333e48;
@@ -121,24 +121,24 @@ const TopCart = styled.div`
 const TopCartContainer = styled.div`
   font-size: 13px;
   font-weight: 400;
-  line-height: 20px;
+  /* line-height: 20px; */
   text-align: left;
   color: #fff;
-  margin-top: 21px;
+  /* margin-top: 21px; */
   /* float: right; */
 `;
 
 const MiniCart = styled.div`
   font-size: 13px;
   font-weight: 400;
-  line-height: 20px;
+  /* line-height: 20px; */
   /* text-align: center; */
   cursor: pointer;
 `;
 
 const BasketDropDown = styled.div`
   font-weight: 400;
-  line-height: 20px;
+  /* line-height: 20px; */
   color: #fff;
   /* text-align: center; */
   cursor: pointer;
@@ -163,9 +163,12 @@ const CartIcon = styled.div`
   font-size: 16px;
   margin-right: ${(props) => (props.dimensions < 576 ? '0' : '12px')};
   background: ${(props) => props.theme.colours.black2};
-  padding: 15px 16px;
+  /* padding: 15px 16px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #fff;
-  border-radius: 100px;
+  /* border-radius: 100px; */
 `;
 
 const CartInner = styled.div`
@@ -184,64 +187,60 @@ const CartTitle = styled.span`
 
 const CartTotal = styled.span`
   color: black;
+  font-weight: 400;
 `;
 
 const HeaderMiddle = () => {
   const [dimensions] = useContext(DimensionContext);
 
   return (
-    <Container>
-      <HeaderMiddleWrapper>
-        <LogoContainer>
-          <a title="Afia.com" href="home.html">
-            <img
-              alt="responsive theme logo"
-              src={logo}
-              classNameName="img-logo"
-            />
-          </a>
-        </LogoContainer>
-        <TopSearch dimensions={dimensions.width}>
-          <Search>
-            <SearchForm
-              method="post"
-              action="/multecartultimate/multefront/web/product/default/search"
-              _lpchecked="1"
-            >
-              <SearchInputGroup>
-                <SearchInputHidden
-                  type="hidden"
-                  name="_csrf"
-                  value="Zk4rn_Uh1yKATpFiIFLDs7VRkXH6S1QqAlrCJ_Nuqp0iL0frw1icT7B4xCl4JZHHg2bzAbMOZUlXbZFJlB3o2g=="
-                />
-                <SearchInputNameFilter
-                  id="filter_name"
-                  type="text"
-                  name="searchbox"
-                  placeholder="Search"
-                  className="form-control"
-                />
-                <SearchSubmitButton type="submit" className="btn-search">
-                  <FaSearch />
-                </SearchSubmitButton>
-              </SearchInputGroup>
-            </SearchForm>
-          </Search>
-        </TopSearch>
-        <TopCart>
-          <TopCartContainer>
-            <MiniCart>
-              <BasketDropDown data-toggle="dropdown" data-hover="dropdown">
-                <CartIcon dimensions={dimensions.width}>
-                  <FaShoppingCart />
-                </CartIcon>
-                <CartInner dimensions={dimensions.width}>
-                  <CartTitle>Shopping Cart</CartTitle>
-{' '}
-                  <CartTotal>4 Item(s): $520.00</CartTotal>
-                </CartInner>
-              </BasketDropDown>
-              {/* <div>
+    <MidHeader>
+      <Container>
+        <HeaderMiddleWrapper>
+          <LogoContainer>
+            <a title="Afia.com" href="home.html">
+              <img
+                alt="responsive theme logo"
+                src={logo}
+                classNameName="img-logo"
+              />
+            </a>
+          </LogoContainer>
+          <TopSearch dimensions={dimensions.width}>
+            <Search>
+              <SearchForm
+                method="post"
+                action="/multecartultimate/multefront/web/product/default/search"
+                _lpchecked="1"
+              >
+                <SearchInputGroup>
+                  <SearchInputNameFilter
+                    id="filter_name"
+                    type="text"
+                    name="searchbox"
+                    placeholder="Search"
+                    className="form-control"
+                  />
+                  <SearchSubmitButton type="submit" className="btn-search">
+                    <FaSearch />
+                  </SearchSubmitButton>
+                </SearchInputGroup>
+              </SearchForm>
+            </Search>
+          </TopSearch>
+          <TopCart>
+            <TopCartContainer>
+              <MiniCart>
+                <BasketDropDown data-toggle="dropdown" data-hover="dropdown">
+                  <CartIcon dimensions={dimensions.width}>
+                    <FaShoppingCart />
+                  </CartIcon>
+                  <CartInner dimensions={dimensions.width}>
+                    <CartTitle>Shopping Cart</CartTitle>
+                    <CartTotal>4 Item(s): $520.00</CartTotal>
+                  </CartInner>
+                </BasketDropDown>
+                {/* <div>
               <div className="top-cart-content">
                 <div className="block-subtitle hidden-xs">
                   Recently added item(s)
@@ -363,11 +362,12 @@ x<span className="price">$420.00</span>
                 </div>
               </div>
             </div> */}
-            </MiniCart>
-          </TopCartContainer>
-        </TopCart>
-      </HeaderMiddleWrapper>
-    </Container>
+              </MiniCart>
+            </TopCartContainer>
+          </TopCart>
+        </HeaderMiddleWrapper>
+      </Container>
+    </MidHeader>
   );
 };
 
