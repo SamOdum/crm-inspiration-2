@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useSpring } from 'react-spring';
-import { FaUser, FaMale, FaMoneyBill } from 'react-icons/fa';
+import { FaUser, FaHome, FaMoneyBill } from 'react-icons/fa';
 
 import Container from './Container';
 import IconLink from '../elements/IconLink';
@@ -126,7 +126,11 @@ const HeaderStrip = () => {
                 name="Register"
                 onMouseEnter={openDropDown}
                 onMouseLeave={closeDropDown}
-                style={{ marginRight: 0, position: 'relative' }} // This counsels out the margin-right set on the imported IconLink component
+                style={{
+                  marginRight: 0,
+                  position: 'relative',
+                  cursor: 'pointer',
+                }} // This cancels out the margin-right set on the imported IconLink component
               >
                 <AnimatedDropdown
                   style={dropDownAnchorRegister}
@@ -144,7 +148,7 @@ const HeaderStrip = () => {
                   <DropDownListItem>
                     <DropDownAnchor href="vendor-signup">
                       <span>
-                        <FaMale />
+                        <FaHome />
                       </span>
                       {' As Vendor'}
                     </DropDownAnchor>

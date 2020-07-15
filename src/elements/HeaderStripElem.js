@@ -27,18 +27,11 @@ export const Welcome = styled.div`
   letter-spacing: 0.8px;
   line-height: 30px;
   color: ${(props) => props.theme.colours.black2};
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  /* position: relative; */
   min-height: 1px;
-  /* padding-right: 15px;
-  padding-left: 15px; */
   display: ${(props) => (props.dimensions < 576 ? 'none' : 'inline-block')};
 `;
 
 export const HeaderLinks = styled.div`
-  /* padding: 0 0.2em; */
   display: flex;
   align-items: center;
   color: ${(props) => props.theme.colours.black1};
@@ -69,20 +62,14 @@ export const DropDownListItem = styled.li`
   cursor: pointer;
   visibility: visible;
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
   list-style: none;
   background: #fbfbfb;
 `;
 export const DropDownAnchor = styled.a`
   visibility: visible;
   list-style: none;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  background-color: transparent;
+  background-color: ${(props) => props.theme.colours.white1};
   text-decoration: none;
-  /* transition: 0.5s all ease; */
   position: relative;
   white-space: nowrap;
   line-height: 30px;
@@ -103,7 +90,6 @@ export const AnimatedDropdown = styled(animated.ul)`
   color: #334141;
   line-height: normal;
   cursor: pointer;
-  box-sizing: border-box;
   position: absolute;
   right: 0;
   padding: 10px;

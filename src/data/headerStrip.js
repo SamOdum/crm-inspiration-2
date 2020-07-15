@@ -4,7 +4,7 @@ import {
   FaHeart,
   FaRss,
   FaUnlockAlt,
-  FaAngleDown,
+  FaDollarSign,
 } from 'react-icons/fa';
 
 export const linkData1 = {
@@ -44,9 +44,9 @@ export const linkData4 = {
 // };
 export const linkData6 = {
   id: 'currency',
-  linkTo: './currency',
+  linkTo: null,
   preIcon: null,
-  postIcon: <FaAngleDown />,
+  postIcon: <FaDollarSign />,
   linkText: 'NGN',
 };
 export const linkData7 = {

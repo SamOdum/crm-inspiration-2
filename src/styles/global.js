@@ -7,6 +7,7 @@ const Global = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     letter-spacing: 0.5px;
+    font-family: 'Arimo', sans-serif;
   }
 
   :root {

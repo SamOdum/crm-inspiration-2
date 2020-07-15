@@ -9,7 +9,8 @@ const Anchor = styled.a`
   font-weight: 400;
   margin-right: 12px;
   text-decoration: none;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   /* line-height: 1; */
   position: relative;
   color: ${(props) => props.theme.colours.black1};
