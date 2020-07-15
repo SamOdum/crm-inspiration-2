@@ -68,7 +68,7 @@ export const DropDownListItem = styled.li`
 export const DropDownAnchor = styled.a`
   visibility: visible;
   list-style: none;
-  background-color: transparent;
+  background-color: ${(props) => props.theme.colours.white1};
   text-decoration: none;
   position: relative;
   white-space: nowrap;

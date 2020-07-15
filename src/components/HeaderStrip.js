@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useSpring } from 'react-spring';
-import { FaUser, FaMale, FaMoneyBill } from 'react-icons/fa';
+import { FaUser, FaHome, FaMoneyBill } from 'react-icons/fa';
 
 import Container from './Container';
 import IconLink from '../elements/IconLink';
@@ -148,7 +148,7 @@ const HeaderStrip = () => {
                   <DropDownListItem>
                     <DropDownAnchor href="vendor-signup">
                       <span>
-                        <FaMale />
+                        <FaHome />
                       </span>
                       {' As Vendor'}
                     </DropDownAnchor>

@@ -174,20 +174,26 @@ const CartIcon = styled.div`
 const CartInner = styled.div`
   color: #000;
   font-weight: bold;
-  display: flex;
+  display: ${(props) => (props.dimensions < 576 ? 'none' : 'flex')};
   justify-content: flex-start;
   /* align-items: center; */
   flex-direction: column;
-  display: ${(props) => (props.dimensions < 576 ? 'none' : 'flex')};
 `;
 
 const CartTitle = styled.span`
   text-transform: uppercase;
+  display: block;
+  width: auto;
 `;
 
-const CartTotal = styled.span`
+const CartTotal = styled.div`
   color: black;
-  font-weight: 400;
+  display: flex;
+  justify-content: flex-start;
+`;
+const CartItemCount = styled.span`
+  font-weight: 600;
+  max-width: 102px; /**This matches the width of the text in CartTitle */
 `;
 
 const HeaderMiddle = () => {
@@ -237,7 +243,9 @@ const HeaderMiddle = () => {
                   </CartIcon>
                   <CartInner dimensions={dimensions.width}>
                     <CartTitle>Shopping Cart</CartTitle>
-                    <CartTotal>4 Item(s): $520.00</CartTotal>
+                    <CartTotal>
+                      <CartItemCount>4 Item(s): $520,898.00</CartItemCount>
+                    </CartTotal>
                   </CartInner>
                 </BasketDropDown>
                 {/* <div>
