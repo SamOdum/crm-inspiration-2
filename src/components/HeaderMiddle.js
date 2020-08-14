@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import { useSpring } from 'react-spring';
 import styled from 'styled-components';
 import { FaSearch, FaShoppingCart } from 'react-icons/fa';
 
@@ -15,7 +16,7 @@ const HeaderMiddleWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 80px;
+  height: ${(props) => (props.dimensions < 815 ? '60px' : '80px')};
 `;
 
 const LogoContainer = styled.div`
@@ -84,6 +85,7 @@ const SearchInputNameFilter = styled.input`
   background: #fff;
   border-left: 1px solid #eaeaea;
   box-shadow: none;
+  outline-width: 0;
 `;
 
 const SearchSubmitButton = styled.button`
@@ -106,6 +108,7 @@ const SearchSubmitButton = styled.button`
   border: none;
   color: #333e48;
   border-left: 1px #eaeaea solid;
+  outline-width: 0;
 `;
 
 const TopCart = styled.div`
@@ -202,7 +205,7 @@ const HeaderMiddle = () => {
   return (
     <MidHeader>
       <Container>
-        <HeaderMiddleWrapper>
+        <HeaderMiddleWrapper dimensions={dimensions.width}>
           <LogoContainer>
             <a title="Afia.com" href="home.html">
               <img
